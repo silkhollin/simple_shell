@@ -35,12 +35,12 @@ int token_tot(char *str, char *del)
 	for (index = 0; *(str + index); index++)
 		sum++;
 
-	for (index = 0; index < len; index++)
+	for (index = 0; index < sum; index++)
 	{
 		if (*(str + index) != *del)
 		{
 			tokens++;
-			index += token_len(str + index, delim);
+			index += token_len(str + index, del);
 		}
 	}
 

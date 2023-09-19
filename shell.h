@@ -67,7 +67,6 @@ int shellby_env(char **args, char __attribute__((__unused__)) **front);
 int shellby_setenv(char **args, char __attribute__((__unused__)) **front);
 int shellby_unsetenv(char **args, char __attribute__((__unused__)) **front);
 
-
 /** path locator **/
 list_t *get_path_dir(char *path);
 char *fill_path_dir(char *path);
@@ -131,4 +130,33 @@ int create_error(char **args, int err);
 int cant_open(char *file_path);
 int proc_file_commands(char *file_path, int *exe_ret);
 
+/** list ops **/
+alias_t *add_alias_end(alias_t **head, char *name, char *value);
+void free_alias_list(alias_t *head);
+list_t *add_node_end(list_t **head, char *dir);
+void free_list(list_t *head);
 
+/** primary execution files **/
+void sig_handler(int sig);
+int execute(char **args, char **front);
+
+/** input handler **/
+char *get_args(char *line, int *exe_ret);
+int call_args(char **args, char **front, int *exe_ret);
+int run_args(char **args, char **front, int *exe_ret);
+int handle_args(int *exe_ret);
+int check_args(char **args);
+
+/** shell-helpers **/
+int shellby_alias(char **args, char __attribute__((__unused__)) **front);
+void set_alias(char *var_name, char *value);
+void print_alias(alias_t *alias);
+void free_args(char **args, char **front);
+char *get_pid(void);
+char *get_env_value(char *beginning, int len);
+void variable_replacement(char **args, int *exe_ret);
+void handle_line(char **line, ssize_t read);
+ssize_t get_new_len(char *line);
+void logical_ops(char *line, ssize_t *new_len);
+
+#endif
